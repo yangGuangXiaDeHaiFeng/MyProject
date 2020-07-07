@@ -62,6 +62,10 @@ export default [
             name: 'iframe',
             path: '/model/iframe',
             component: './iframeTest',
+          },{
+            name: 'formily',
+            path: '/model/formily',
+            component: './formily',
           },
           {
             path: '/admin',

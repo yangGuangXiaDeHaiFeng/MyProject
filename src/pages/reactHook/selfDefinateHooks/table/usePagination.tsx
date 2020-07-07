@@ -25,6 +25,7 @@ const [pagination,setPagination]=useState({
       ...config,
       pageSize: pagination.pageSize,
       current: pagination.current,
+      showSizeChanger:true,
       onChange: (current:number, pageSize:number) => {
         if (config.onChange) {
           config.onChange(current, pageSize);

@@ -16,6 +16,7 @@ import BasicRadar2 from "@/pages/charts/compnent/BasicRadar2";
 import BasicHeatMap from "@/pages/charts/compnent/BasicHeatMap";
 import BasicBox from "@/pages/charts/compnent/BasicBox";
 import GroupedBoxChart from "@/pages/charts/compnent/GroupedBoxChart";
+import Wordcloud from "@/pages/charts/compnent/WordCloud";
 import {maxLen} from "@/pages/charts/utils/chartsCommon";
 
 
@@ -712,6 +713,8 @@ const ChartsIndex:React.FC<{}>=()=>{
       <BasicBoxMemo data={boxData} xAxis="x" boxValue="boxValue" maxLen={maxLen}/>
       <h2>箱型图-分组箱型图</h2>
       <GroupedBoxChartMemo data={groupedBoxData} xAxis="termName" legendName="gradeName" boxValue="interval"  maxLen={5}/>
+      <h2>词云图</h2>
+      <Wordcloud/>
     </div>
   );
 }

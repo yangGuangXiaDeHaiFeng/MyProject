@@ -51,5 +51,57 @@ export default {
       read: true,
       type: 'notification',
     },
+
+
+    {
+      id: '0000000012',
+      title: '你收到了 14 份新周报',
+      datetime: '2017-08-09',
+      type: 'notification',
+    },
+    {
+      id: '0000000022',
+      title: '你推荐的 曲妮妮 已通过第三轮面试',
+      datetime: '2017-08-08',
+      type: 'notification',
+    },
+    {
+      id: '0000000032',
+      title: '这种模板可以区分多种通知类型',
+      datetime: '2017-08-07',
+      read: true,
+      type: 'notification',
+    },
+    {
+      id: '0000000042',
+      title: '左侧图标用于区分不同的类型',
+      datetime: '2017-08-07',
+      type: 'notification',
+    },
+    {
+      id: '0000000052',
+      title: '内容不要超过两行字，超出时自动截断',
+      datetime: '2017-08-07',
+      type: 'notification',
+    },
+    {
+      id: '00000000112',
+      title: '你收到了 14 份新周报',
+      datetime: '2017-08-09',
+      type: 'notification',
+    },
+    {
+      id: '00000000212',
+      title: '你推荐的 曲妮妮 已通过第三轮面试',
+      datetime: '2017-08-08',
+      type: 'notification',
+    },
+    {
+      id: '00000000312',
+      title: '这种模板可以区分多种通知类型',
+      datetime: '2017-08-07',
+      read: true,
+      type: 'notification',
+    },
   ]
 }
