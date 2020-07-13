@@ -71,6 +71,7 @@ const BasicBoxAndLine:React.FC<IBasicBoxAndLineProps>=(props)=>{
       <Chart height={height} data={dv||data} forceFit>
         <Axis name={xAxis} />
         <Axis name={boxValue}  />
+        <Axis name={avg} grid={null} />
         <Tooltip
           showTitle={false}
           crosshairs={{
@@ -86,6 +87,7 @@ const BasicBoxAndLine:React.FC<IBasicBoxAndLineProps>=(props)=>{
         <Geom type="schema"
               position={`${xAxis}*${boxValue}`}
               shape="box"
+              color={colors[0]}
               tooltip={
                 [
                   `${xAxis}*${boxValue}*${avg}`,
@@ -125,7 +127,7 @@ const BasicBoxAndLine:React.FC<IBasicBoxAndLineProps>=(props)=>{
               style={{
                 stroke: "rgba(0, 0, 0, 0.45)",
                 fill: `${colors[0]}`,
-                fillOpacity: 0.3
+                fillOpacity: 0.8
               } as any}
         />
         <Geom type="line" position={`${xAxis}*${avg}`} size={2} tooltip={false} color={colors[1]} />

@@ -764,7 +764,7 @@ const ChartsIndex:React.FC<{}>=()=>{
       <h2>箱型图-基础箱型图</h2>
       <BasicBoxMemo data={boxData} xAxis="x" boxValue="boxValue" maxLen={maxLen}/>
       <h2>箱型图-基础箱型图-带平均数折线</h2>
-      <BasicBoxAndLine data={boxData2} xAxis="x" boxValue="boxValue" maxLen={maxLen} avg="avg"/>
+      <BasicBoxAndLineMemo data={boxData2} xAxis="x" boxValue="boxValue" maxLen={maxLen} avg="avg"/>
       <h2>箱型图-分组箱型图</h2>
       <GroupedBoxChartMemo data={groupedBoxData} xAxis="termName" legendName="gradeName" boxValue="interval"  maxLen={5}/>
       <h2>词云图</h2>
