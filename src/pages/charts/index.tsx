@@ -17,6 +17,7 @@ import BasicHeatMap from "@/pages/charts/compnent/BasicHeatMap";
 import BasicBox from "@/pages/charts/compnent/BasicBox";
 import GroupedBoxChart from "@/pages/charts/compnent/GroupedBoxChart";
 import Wordcloud from "@/pages/charts/compnent/WordCloud";
+import BasicBoxAndLine from "@/pages/charts/compnent/BasicBoxAndLine";
 import {maxLen} from "@/pages/charts/utils/chartsCommon";
 
 
@@ -37,6 +38,7 @@ const BasicRadar2Memo=memo(BasicRadar2);
 const BasicHeatMapMemo=memo(BasicHeatMap);
 const BasicBoxMemo=memo(BasicBox);
 const GroupedBoxChartMemo=memo(GroupedBoxChart);
+const BasicBoxAndLineMemo=memo(BasicBoxAndLine);
 
 const basicLineData= [
   {
@@ -671,7 +673,57 @@ const groupedBoxData=[
     ]
   }
 ];
-
+const boxData2=[
+  {
+    x:'一月',
+    boxValue:[0,1,4,7,9],
+    avg:5,
+  },
+  {
+    x:'二月',
+    boxValue:[7,34,68,70,90],
+    avg:65,
+  },
+  {
+    x:'三月',
+    boxValue:[2,12,42,72,92],
+    avg:5,
+  },
+  {
+    x:'四月',
+    boxValue:[1,11,41,71,91],
+    avg:45,
+  },
+  {
+    x:'五月',
+    boxValue:[9,91,94,97,99],
+    avg:85,
+  },
+  {
+    x:'六月',
+    boxValue:[70,71,94,117,119],
+    avg:75,
+  },
+  {
+    x:'七月',
+    boxValue:[20,31,44,57,69],
+    avg:35,
+  },
+  {
+    x:'八月',
+    boxValue:[6,16,46,76,96],
+    avg:65,
+  }, {
+    x:'九月',
+    boxValue:[12,33,44,74,94],
+    avg:45,
+  },
+  {
+    x:'十月',
+    boxValue:[2,6,4,7,10],
+    avg:6,
+  },
+];
 const ChartsIndex:React.FC<{}>=()=>{
 
   return(
@@ -711,6 +763,8 @@ const ChartsIndex:React.FC<{}>=()=>{
       <BasicHeatMapMemo data={radarData} xAxis="month" yAxis="day" legendName="sales" maxLen={maxLen}/>
       <h2>箱型图-基础箱型图</h2>
       <BasicBoxMemo data={boxData} xAxis="x" boxValue="boxValue" maxLen={maxLen}/>
+      <h2>箱型图-基础箱型图-带平均数折线</h2>
+      <BasicBoxAndLine data={boxData2} xAxis="x" boxValue="boxValue" maxLen={maxLen} avg="avg"/>
       <h2>箱型图-分组箱型图</h2>
       <GroupedBoxChartMemo data={groupedBoxData} xAxis="termName" legendName="gradeName" boxValue="interval"  maxLen={5}/>
       <h2>词云图</h2>
