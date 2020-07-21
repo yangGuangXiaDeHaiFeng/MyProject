@@ -2,6 +2,7 @@ import React from 'react';
 import {Form,Input} from 'antd';
 import TableForm from './TableForm';
 import EditableTable from './EditableTable';
+import ScrollTable from "@/pages/tableForm/component/ScrollTable";
 
 const Index:React.FC<{}>=()=>{
 const tableData=[{name:'编辑',type:'操作',minScore: 85},{name:'编辑2',type:'操作2',minScore: 335}];
@@ -28,6 +29,8 @@ const tableData=[{name:'编辑',type:'操作',minScore: 85},{name:'编辑2',type
       </Form.Item>
 
     </Form>
+    <h2>带滚动条的table</h2>
+    <ScrollTable/>
   </div>)
 }
 export default Index;

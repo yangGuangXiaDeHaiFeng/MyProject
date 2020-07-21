@@ -35,3 +35,14 @@ export function filterSliderData(flag:boolean,dataSet:any,data:any[],obj:any,xAx
     return obj;
   }
 }
+// 通用颜色数组
+export const colors = [
+  '#F57878',
+  '#D29DFF',
+  '#81C9FF',
+ '#6ED8B9',
+  '#FEA657',
+  '#D2D86E',
+  '#FFA0D3',
+  '#9CBE71',
+];

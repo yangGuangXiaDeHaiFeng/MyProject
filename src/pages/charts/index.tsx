@@ -19,6 +19,7 @@ import GroupedBoxChart from "@/pages/charts/compnent/GroupedBoxChart";
 import Wordcloud from "@/pages/charts/compnent/WordCloud";
 import BasicBoxAndLine from "@/pages/charts/compnent/BasicBoxAndLine";
 import {maxLen} from "@/pages/charts/utils/chartsCommon";
+import LegendColor from "@/pages/charts/legendColor/LegendColor";
 
 
 const BasicLineMemo=memo(BasicLine);
@@ -769,6 +770,9 @@ const ChartsIndex:React.FC<{}>=()=>{
       <GroupedBoxChartMemo data={groupedBoxData} xAxis="termName" legendName="gradeName" boxValue="interval"  maxLen={5}/>
       <h2>词云图</h2>
       <Wordcloud/>
+      <h1>bizCharts特殊需求图表</h1>
+      <h2>图例和颜色固定</h2>
+      <LegendColor/>
     </div>
   );
 }
