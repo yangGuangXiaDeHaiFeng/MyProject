@@ -1,6 +1,5 @@
 import React,{memo,useState} from "react";
 import {Select} from 'antd';
-import {colors} from "@/pages/charts/utils/chartsCommon";
 import StackedColumn from "./StackedColumn";
 
 const StackedColumnMemo=memo(StackedColumn);
@@ -221,6 +220,28 @@ const data_2016=[
     money: null
   },
 ];
+// 通用颜色数组
+export const colors = [
+  '#F57878',
+  '#D29DFF',
+  '#81C9FF',
+  '#6ED8B9',
+  '#FEA657',
+  '#D2D86E',
+  '#FFA0D3',
+  '#9CBE71',
+];
+export function dealData(d:any[],pro:string,c:string[]) {
+  //  用对象来保存图例和颜色的对应关系
+  const result = {};
+  if(d&&d.length>0&&pro&&c&&c.length>0){
+    const items = [...new Set(d.map((item: any) => item[pro]))];
+    for(let i=0;i<items.length;i+=1){
+      result[items[i]]=c[i%c.length];
+    }
+  }
+  return result;
+}
 /**
  * 需求说明
  * 1、图例和颜色对应并固定，比如：“大二”无论在什么情况下都是 “red”;
@@ -267,7 +288,6 @@ const LegendColor:React.FC<{}>=()=>{
   const legendItem=[...new Set(data.map((item: any) => item.xValue))];
 
   const selectOptions=[{value:'2016',name:'2016年'},{value:'2017',name:'2017年'},{value:'2018',name:'2018年'},{value:'2019',name:'2019年'},{value:'2020',name:'2020年'}];
-  console.log('data',data);
   return<div>
     <div style={{display:"flex",justifyContent:'space-between'}}>
       <h3>大学生累计消费</h3>
@@ -286,14 +306,4 @@ const LegendColor:React.FC<{}>=()=>{
   </div>
 }
 export default LegendColor;
-export function dealData(d:any[],pro:string,c:string[]) {
-  //  用对象来保存图例和颜色的对应关系
-  const result = {};
-  if(d&&d.length>0&&pro&&c&&c.length>0){
-    const items = [...new Set(d.map((item: any) => item[pro]))];
-    for(let i=0;i<items.length;i+=1){
-      result[items[i]]=c[i%c.length];
-    }
-  }
-  return result;
-}
+
