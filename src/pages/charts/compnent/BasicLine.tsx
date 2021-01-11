@@ -1,22 +1,17 @@
-import React from "react";
-import {
-  Chart,
-  Geom,
-  Axis,
-  Tooltip,
-} from "bizcharts";
+import React from 'react';
+import { Chart, Geom, Axis, Tooltip } from 'bizcharts';
 // @ts-ignore
 import Slider from 'bizcharts-plugin-slider';
 // @ts-ignore
 import DataSet from '@antv/data-set';
-import {dealSliderChange, filterSliderData} from "@/pages/charts/utils/chartsCommon";
+import { dealSliderChange, filterSliderData } from '@/pages/charts/utils/chartsCommon';
 
 interface IBasicLineProps {
   data: any[]; // 数据源
   xAxis: string; // x轴坐标
   yAxis: string; // y轴坐标
-  height?:number;
-  maxLen?:number;
+  height?: number;
+  maxLen?: number;
 }
 
 /**
@@ -24,59 +19,82 @@ interface IBasicLineProps {
  * @param props
  * @constructor
  */
-const BasicLine:React.FC<IBasicLineProps>=(props)=>{
-  const {height=400,xAxis,yAxis,data,maxLen}=props;
-  let flag:boolean=false;
-  let ds:any;
-  let dv:any;
+let initChart: any = null;
+const BasicLine: React.FC<IBasicLineProps> = (props) => {
+  const { height = 400, xAxis, yAxis, data, maxLen } = props;
+  let flag: boolean = false;
+  let ds: any;
+  let dv: any;
   // 是否传入maxLen(有滚动条时必须传入)
-  if(maxLen){
-    const dataLen=data.length;
+  if (maxLen) {
+    const dataLen = data.length;
     // 设置一个flag，用来判断是否出现滚动条（以及是否需要处理数据）
-    flag=dataLen>maxLen;
-    if(flag){
-      const startLength =dataLen-maxLen ;
+    flag = dataLen > maxLen;
+    if (flag) {
+      const startLength = dataLen - maxLen;
       const endLength = dataLen - 1;
-      ds=new DataSet({
+      ds = new DataSet({
         state: {
           start: data[startLength][xAxis],
           end: data[endLength][xAxis],
         },
       });
-      dv=ds.createView()
+      dv = ds
+        .createView()
         .source(data)
         .transform({
           type: 'filter',
           // eslint-disable-next-line consistent-return
-          callback: (obj: any) =>   filterSliderData(flag,ds,data,obj,xAxis),
+          callback: (obj: any) => filterSliderData(flag, ds, data, obj, xAxis),
         });
     }
   }
 
+  function exportCanvasAsPNG(canvasElement: any, fileName: string) {
+    const MIME_TYPE = 'image/png';
+    const imgURL = canvasElement.toDataURL(MIME_TYPE);
+    const dlLink = document.createElement('a');
+    dlLink.download = fileName;
+    dlLink.href = imgURL;
+    dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
 
+    document.body.appendChild(dlLink);
+    dlLink.click();
+    document.body.removeChild(dlLink);
+  }
+  function test() {
+    if (initChart) {
+      // eslint-disable-next-line no-underscore-dangle
+      const canvas = initChart._attrs.canvas.get('el');
+      exportCanvasAsPNG(canvas, 'img');
+    }
+  }
 
   return (
     <>
-      <Chart height={height} data={dv||data} forceFit>
+      <a onClick={test}>下载</a>
+
+      <Chart
+        onGetG2Instance={(chart) => {
+          initChart = chart;
+        }}
+        height={height}
+        data={dv || data}
+        forceFit
+      >
         <Axis name={xAxis} />
-        <Axis name={yAxis}  />
+        <Axis name={yAxis} />
         <Tooltip
           crosshairs={{
-            type: "y"
+            type: 'y',
           }}
         />
-        <Geom type="line" position={`${xAxis}*${yAxis}`}size={2}
-             />
-        <Geom
-          type="point"
-          position={`${xAxis}*${yAxis}`}
-          size={4}
-          shape="circle"
-        />
+        <Geom type="line" position={`${xAxis}*${yAxis}`} size={2} />
+        <Geom type="point" position={`${xAxis}*${yAxis}`} size={4} shape="circle" />
       </Chart>
-      {
-        flag &&<Slider
-          onChange={(obj:any)=>dealSliderChange(obj,ds)}
+      {flag && (
+        <Slider
+          onChange={(obj: any) => dealSliderChange(obj, ds)}
           height={20}
           width="auto"
           xAxis={xAxis}
@@ -92,11 +110,9 @@ const BasicLine:React.FC<IBasicLineProps>=(props)=>{
             type: 'heatmap',
           }}
         />
-      }
+      )}
     </>
   );
-}
-
+};
 
 export default BasicLine;
-
